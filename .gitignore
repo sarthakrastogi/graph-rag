@@ -1,0 +1,13 @@
+.DS_Store
+.env
+utils/__pycache__
+graph-rag/__pycache__
+graph-rag/utils/__pycache__
+examples/__pycache__
+resources/__pycache__
+__pycache__
+.gitmodules
+usage.ipynb
+build/
+dist/
+graph-rag.egg-info/
