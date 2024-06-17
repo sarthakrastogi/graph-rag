@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
-from graph_rag.utils.text_preprocessing import (
+from graphrag.utils.text_preprocessing import (
     remove_stop_words_from_and_lemmatise_documents,
 )
 

@@ -10,4 +10,4 @@ __pycache__
 usage.ipynb
 build/
 dist/
-graph_rag.egg-info/
+knowledge_graph_rag.egg-info/
