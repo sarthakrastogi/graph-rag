@@ -84,14 +84,11 @@ class DocumentsGraph:
 
     def find_connected_documents(self, input_sentence, N=3):
         # Find the node corresponding to the given sentence
-        # print(input_sentence)
         input_sentence = remove_stop_words_from_and_lemmatise_documents(
             documents=[input_sentence]
         )[0]
-        # print(input_sentence)
         node_index = None
         for node, data in self.G.nodes(data=True):
-            print(data["label"], input_sentence)
             if data["label"] == input_sentence:
                 node_index = node
                 break
@@ -110,7 +107,7 @@ class DocumentsGraph:
 
         # Return the top N neighbors with their full text and weights
         top_neighbors = [
-            (self.G.nodes[neighbor]["label"], weight)
+            {"document": self.G.nodes[neighbor]["label"]}  # , "similarity": weight}
             for neighbor, weight in neighbors[:N]
         ]
         return top_neighbors
