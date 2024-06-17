@@ -5,7 +5,7 @@ with open("README.MD", "r") as f:
 
 setup(
     name="knowledge_graph_rag",
-    version="0.0.1",
+    version="0.0.3",
     packages=find_packages(),
     long_description=readme_content,
     long_description_content_type="text/markdown",

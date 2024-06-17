@@ -11,3 +11,5 @@ usage.ipynb
 build/
 dist/
 knowledge_graph_rag.egg-info/
+cvd_vectors/
+med_graph.pickle
