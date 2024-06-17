@@ -4,15 +4,15 @@ with open("README.MD", "r") as f:
     readme_content = f.read()
 
 setup(
-    name="nebulousai",
+    name="graph_rag",
     version="0.1.1",
     packages=find_packages(),
     long_description=readme_content,
     long_description_content_type="text/markdown",
     install_requires=[
+        "numpy==1.26.0",
+        "networkx==3.2.1",
+        "nltk==3.8.1",
         "litellm==1.34.0",
-        "wikipedia==1.4.0",
-        "duckduckgo_search==6.1.0",
-
-    ]
+    ],
 )

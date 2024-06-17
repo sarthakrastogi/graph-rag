@@ -3,8 +3,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import pickle
 
-from graphrag.utils.text_preprocessing import (
+from graph_rag.utils.text_preprocessing import (
     remove_stop_words_from_and_lemmatise_documents,
 )
 
@@ -12,11 +13,9 @@ from graphrag.utils.text_preprocessing import (
 class DocumentsGraph:
     def __init__(self, documents) -> None:
         self.documents = documents
-
         self.preprocessed_documents = remove_stop_words_from_and_lemmatise_documents(
             documents=documents
         )
-
         self.G = self.create_graph_from_documents()
 
     def create_graph_from_documents(self):
@@ -43,7 +42,7 @@ class DocumentsGraph:
 
         return G
 
-    def plot_graph(self):
+    def plot(self):
         # Draw the graph with labels and edge weights
         pos = nx.spring_layout(self.G)
 
@@ -51,6 +50,10 @@ class DocumentsGraph:
 
         # Draw nodes with labels
         node_labels = nx.get_node_attributes(self.G, "label")
+        node_labels = {
+            node_number: node_label[:20] + "..."
+            for node_number, node_label in node_labels.items()
+        }
         nx.draw_networkx_nodes(
             self.G, pos, node_size=5000, node_color="skyblue", alpha=0.7
         )
@@ -81,11 +84,14 @@ class DocumentsGraph:
 
     def find_connected_documents(self, input_sentence, N=3):
         # Find the node corresponding to the given sentence
+        # print(input_sentence)
         input_sentence = remove_stop_words_from_and_lemmatise_documents(
             documents=[input_sentence]
         )[0]
+        # print(input_sentence)
         node_index = None
         for node, data in self.G.nodes(data=True):
+            print(data["label"], input_sentence)
             if data["label"] == input_sentence:
                 node_index = node
                 break
@@ -135,3 +141,11 @@ class DocumentsGraph:
             if similarity_scores[idx] > 0
         ]
         return closest_sentences
+
+    def save(self, graph_name):
+        # save graph object to file
+        pickle.dump(self.G, open(f"{graph_name}.pickle", "wb"))
+
+    def load_from_file(self, graph_name):
+        # load graph object from file
+        self.G = pickle.load(open(f"{graph_name}.pickle", "rb"))
