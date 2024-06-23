@@ -35,7 +35,7 @@ knowledge_graph.search_document(user_query)
 ```
 
 ```
-Entity: cardiovascular disease
+>> Entity: cardiovascular disease
   -> antihypertensive agents (Relationship: involves treatment with)
   -> statins (Relationship: used to modulate dyslipidemia)
   -> antiplatelet therapy (Relationship: utilized to mitigate thrombosis risk)
@@ -52,7 +52,7 @@ documents_containing_connected_terminology
 ```
 
 ```
-[{'document': 'emerging therapeutic intervention ...'},
+>> [{'document': 'emerging therapeutic intervention ...'},
  {'document': 'management cardiovascular ...'},
  {'document': 'role novel biomarkers ...'}]
  ```
